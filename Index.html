@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown and Redirect</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        #countdown {
+            font-size: 120px;
+            font-weight: bold;
+            color: #333;
+            margin: 20px 0;
+        }
+        h1 {
+            color: #444;
+        }
+        .message {
+            font-size: 18px;
+            color: #666;
+        }
+        .redirect-url {
+            font-weight: bold;
+            color: #0066cc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Countdown Redirect</h1>
+        <div id="countdown">3</div>
+        <p class="message">Redirecting to <span class="redirect-url">Jumbo-Full-Movie.mp4</span> in <span id="seconds">3</span> seconds</p>
+    </div>
+
+    <script>
+        // Set the URL to redirect to
+        const redirectUrl = "https://www.google.com";
+        
+        // Display the redirect URL in the page
+        document.querySelector('.redirect-url').textContent = redirectUrl.replace('https://', '');
+        
+        // Initial countdown value
+        let count = 3;
+        
+        // Update the countdown every second
+        const countdownInterval = setInterval(() => {
+            count--;
+            
+            // Update the displayed count
+            document.getElementById('countdown').textContent = count;
+            document.getElementById('seconds').textContent = count;
+            
+            // When countdown reaches 0, redirect
+            if (count <= 0) {
+                clearInterval(countdownInterval);
+                window.location.href = redirectUrl;
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
